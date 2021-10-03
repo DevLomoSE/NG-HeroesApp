@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AgregarComponent } from './app/agregar/agregar.component';
+import { AgregarComponent } from './pages/agregar/agregar.component';
 
 
 
