@@ -1,12 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Heroe } from '../interfaces/heroes';
 
 @Pipe({
-  name: 'imagenPipe'
+  name: 'imagen'
 })
-export class ImagenPipePipe implements PipeTransform {
+export class ImagenPipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  img_url!: string;
+
+  transform(heroe?: Heroe, ...args: unknown[]): unknown {
+    this.img_url  = (heroe?.id) ? `assets/heroes/${heroe?.id}.jpg`: `assets/no-image.png`;
+    return this.img_url;
   }
 
 }
