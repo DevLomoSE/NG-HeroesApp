@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Heroe } from 'src/app/heroes/interfaces/heroes';
 
 @Component({
   selector: 'app-heroe-tarjeta',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeroeTarjetaComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  heroe?: Heroe;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
