@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -12,6 +12,7 @@ import { Heroe } from '../interfaces/heroes';
 export class HeroesService {
 
   private baseEndpoint = environment.apiEndpoint;
+  private limit = environment.searchLimit;
 
   constructor(private http: HttpClient) { }
 
@@ -19,7 +20,15 @@ export class HeroesService {
     return this.http.get<Heroe[]>(`${this.baseEndpoint}/heroes`);
   }
 
-  getHeroeById(id: number): Observable<Heroe>{
+  getHeroeById(id: string): Observable<Heroe>{
     return this.http.get<Heroe>(`${this.baseEndpoint}/heroes/${id}`);
+  }
+
+  getSugerencias( termino: string): Observable<Heroe[]>{
+    let params = new HttpParams()
+                      .set('q', termino)
+                      .set('_limit', this.limit);
+
+    return this.http.get<Heroe[]>(`${this.baseEndpoint}/heroes`, { params });
   }
 }
