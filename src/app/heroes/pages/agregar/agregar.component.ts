@@ -10,6 +10,7 @@ import { HeroesService } from '../../services/heroes.service';
   styles: [`
     img{
       width: 100%;
+      border-radius: 8px;
     }
   `]
 })
@@ -29,13 +30,21 @@ export class AgregarComponent implements OnInit {
     alt_img: '',
   };
 
+  label: string = '';
+
   constructor(
     private heroesService: HeroesService,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) { }
+  ) { 
+    this.label = 'Nuevo Héroe';
+  }
 
   ngOnInit(): void {
+    if( !this.router.url.includes('editar')){
+      return;
+    }
+    this.label = 'Editar Héroe';
     this.activatedRoute.params
                         .pipe( 
                           switchMap( ({id}) => this.heroesService.getHeroeById(id) )
