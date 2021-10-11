@@ -35,4 +35,8 @@ export class HeroesService {
   saveHeroe( heroe: Heroe){
     return this.http.post<Heroe>(`${this.baseEndpoint}/heroes`, heroe);
   }
+
+  updateHeroe( heroe: Heroe){
+    return this.http.put<Heroe>(`${this.baseEndpoint}/heroes/${heroe.id}`, heroe);
+  }
 }
