@@ -31,4 +31,8 @@ export class HeroesService {
 
     return this.http.get<Heroe[]>(`${this.baseEndpoint}/heroes`, { params });
   }
+
+  saveHeroe( heroe: Heroe){
+    return this.http.post<Heroe>(`${this.baseEndpoint}/heroes`, heroe);
+  }
 }
